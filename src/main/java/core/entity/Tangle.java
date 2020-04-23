@@ -4,6 +4,7 @@ import core.event.NodeListener;
 import core.event.TangleStateListener;
 import org.jgrapht.Graph;
 
+import java.util.Collections;
 import java.util.Set;
 
 public class Tangle {
@@ -36,5 +37,9 @@ public class Tangle {
 
   public int getEdgesCrossingCount() {
     return this.edgesCrossingCount;
+  }
+
+  public Set<Node> getNodes() {
+    return Collections.unmodifiableSet(tangleGraph.vertexSet());
   }
 }
