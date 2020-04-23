@@ -28,4 +28,8 @@ public class Node {
       listener.update(this.id);
     }
   }
+
+  public Point getPosition() {
+    return position;
+  }
 }
