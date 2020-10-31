@@ -1,8 +1,8 @@
 package core;
 
 import core.entity.node.Node;
-import core.entity.Tangle;
-import core.geometry.Point;
+import core.entity.tangle.Tangle;
+import core.field.geometry.Point;
 
 import java.util.Set;
 

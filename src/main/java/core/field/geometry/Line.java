@@ -1,4 +1,4 @@
-package core.geometry;
+package core.field.geometry;
 
 import org.apache.commons.math3.linear.*;
 

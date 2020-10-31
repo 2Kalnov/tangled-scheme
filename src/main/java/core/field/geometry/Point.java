@@ -1,4 +1,4 @@
-package core.geometry;
+package core.field.geometry;
 
 public class Point {
   public Point(double x, double y) {
@@ -79,5 +79,17 @@ public class Point {
   @Override
   public int hashCode() {
     return 397 * Double.hashCode(x) + Double.hashCode(y);
+  }
+
+  @Override
+  public String toString() {
+    StringBuilder pointDescriptionBuilder = new StringBuilder();
+
+    pointDescriptionBuilder.append("x: ");
+    pointDescriptionBuilder.append(this.x);
+    pointDescriptionBuilder.append(", y: ");
+    pointDescriptionBuilder.append(this.y);
+
+    return pointDescriptionBuilder.toString();
   }
 }
