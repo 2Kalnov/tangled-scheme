@@ -1,19 +1,22 @@
-package core.entity;
+package core.entity.edge;
 
+import core.entity.node.Node;
 import core.event.NodeListener;
-import core.geometry.Line;
+import core.field.geometry.Line;
 
 public class Edge implements NodeListener {
   private Node start;
   private Node end;
-
   private Line line;
 
   public Edge(Node start, Node end) {
     this.start = start;
     this.end = end;
 
-    this.line = new Line(start.position, end.position);
+    this.line = new Line(start.getPosition(), end.getPosition());
+
+    this.start.addListener(this);
+    this.end.addListener(this);
   }
 
   public Line getLine() {
@@ -25,7 +28,14 @@ public class Edge implements NodeListener {
   }
 
   @Override
-  public void update(int nodeId) {
+  public void nodeChanged() {
+    this.line = new Line(start.getPosition(), end.getPosition());
+  }
+
+  @Override
+  public int hashCode() {
+    return this.line.hashCode();
+  }
 
   }
 }
