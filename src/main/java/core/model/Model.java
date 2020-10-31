@@ -1,11 +1,21 @@
-package core;
+package core.model;
 
+import core.entity.node.Node;
+import core.entity.tangle.factory.FourCrossingsTangleFactory;
+import core.entity.tangle.factory.TangleFactory;
+import core.field.Field;
+import core.entity.tangle.Tangle;
 import core.event.TangleStateListener;
+import core.field.PositionOccupiedException;
+import core.field.PositionOutOfFieldException;
+import core.field.geometry.Point;
+import lombok.Getter;
 
 public class Model implements TangleStateListener {
   @Override
-  public void update(boolean isTangled) {
-    this.isTangled = isTangled;
+  public void tangleStateChanged() {
+    Tangle tangle = gameField.getTangle();
+    this.isTangled = tangle.getEdgesCrossingCount() > 0;
   }
 
   private boolean isTangled;
