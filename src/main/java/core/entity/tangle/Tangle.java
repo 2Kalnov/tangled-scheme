@@ -1,17 +1,16 @@
-package core.entity;
+package core.entity.tangle;
 
 import core.entity.edge.Edge;
 import core.entity.node.Node;
 import core.event.NodeListener;
 import core.event.TangleStateListener;
 
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 public class Tangle implements NodeListener {
   private Set<Node> nodes;
   private Set<Edge> edges;
+  private Map<Edge, Boolean> edgesEntanglement;
 
   private Set<TangleStateListener> listeners;
   private int edgesCrossingCount;
@@ -23,6 +22,11 @@ public class Tangle implements NodeListener {
     this.nodes = new HashSet<>();
     this.nodes.addAll(nodes);
 
+    this.listeners = new HashSet<>();
+    edgesEntanglement = new HashMap<>();
+    
+    this.edgesCrossingCount = calculateEdgesCrossingCount();
+
     // Клубок реагирует на изменение любой точки в нём
     for(Node node : this.nodes) {
       node.addListener(this);
@@ -33,10 +37,15 @@ public class Tangle implements NodeListener {
     int crossesNumber = 0;
 
     for(Edge edge : edges) {
+      boolean isCrossed = false;
       for(Edge otherEdge : edges) {
-        if(edge.cross(otherEdge))
+        if(edge.cross(otherEdge)) {
           crossesNumber += 1;
+          isCrossed = true;
+        }
       }
+
+      edgesEntanglement.put(edge, isCrossed);
     }
 
     return crossesNumber / 2;
@@ -59,8 +68,12 @@ public class Tangle implements NodeListener {
     return Collections.unmodifiableSet(this.nodes);
   }
 
+  public Map<Edge, Boolean> getEdgesEntanglement() {
+    return Collections.unmodifiableMap(this.edgesEntanglement);
+  }
+
   @Override
-  public void update() {
+  public void nodeChanged() {
     edgesCrossingCount = calculateEdgesCrossingCount();
     fireTangleChangedEvent();
   }
@@ -68,7 +81,7 @@ public class Tangle implements NodeListener {
   private void fireTangleChangedEvent() {
 
     for (TangleStateListener listener : listeners) {
-      listener.update();
+      listener.tangleStateChanged();
     }
   }
 }
