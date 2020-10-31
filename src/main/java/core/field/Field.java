@@ -7,8 +7,16 @@ import core.field.geometry.Point;
 import java.util.Set;
 
 public class Field {
-  private double width;
-  private double height;
+  public static int DEFAULT_FIELD_HEIGHT = 200;
+  public static int DEFAULT_FIELD_WIDTH = 200;
+
+  private int width;
+  private int height;
+
+  public Field(int width, int height) {
+    this.width = width;
+    this.height = height;
+  }
 
   private Tangle tangle;
 
@@ -58,9 +66,11 @@ public class Field {
     return getNode(x, y) != null;
   }
 
-      successfulMove = true;
-    }
+  public int getWidth() {
+    return this.width;
+  }
 
-    return successfulMove;
+  public int getHeight() {
+    return this.height;
   }
 }
