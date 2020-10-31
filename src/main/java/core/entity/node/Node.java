@@ -57,7 +57,31 @@ public class Node {
     }
   }
 
+  public void addListener(NodeListener listener) {
+    if(listener != null && !listeners.contains(listener))
+      listeners.add(listener);
+  }
+
   public Point getPosition() {
     return position;
+  }
+
+  public int getId() {
+    return this.id;
+  }
+
+  @Override
+  public int hashCode() {
+    return position.hashCode();
+  }
+
+  @Override
+  public boolean equals(Object otherObject) {
+    if(otherObject != null && otherObject instanceof Node) {
+      Node otherNode = (Node)otherObject;
+
+      return otherNode.position.equals(this.position) && otherNode.id == this.id;
+    }
+    else return false;
   }
 }
