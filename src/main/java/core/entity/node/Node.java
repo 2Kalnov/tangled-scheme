@@ -42,6 +42,13 @@ public class Node {
     yOffset = targetY - this.position.getY();
 
     this.position = this.position.move(xOffset, yOffset);
+    return xOffset != 0 || yOffset != 0;
+  }
+
+  public void move(double targetX, double targetY) {
+    boolean moved = moveTo(targetX, targetY);
+    if(moved)
+      fireMoveEvent();
   }
 
   protected void fireMoveEvent() {
