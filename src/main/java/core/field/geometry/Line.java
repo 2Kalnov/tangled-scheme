@@ -1,6 +1,8 @@
 package core.field.geometry;
 
+import lombok.Getter;
 import org.apache.commons.math3.linear.*;
+import org.apache.commons.math3.util.Precision;
 
 import java.util.Objects;
 
@@ -8,14 +10,15 @@ public class Line {
   private Point start;
   private Point end;
 
-  protected LineEquation equation;
+  @Getter
+  protected GeneralLineEquation equation;
 
   public Line(Point start, Point end) {
     if(!start.equals(end)) {
       this.start = start;
       this.end = end;
 
-      this.equation = LineEquation.getLineEquation(this);
+      this.equation = GeneralLineEquation.getGeneralLineEquation(this);
     } else
       throw new IncorrectLineException("Start point equals end point");
   }
@@ -32,10 +35,6 @@ public class Line {
     return start.distanceTo(end);
   }
 
-  public LineEquation getEquation() {
-    return this.equation;
-  }
-
   public Point getLeftPoint() {
     if(start.isToTheLeft(end))
       return start;
@@ -50,27 +49,71 @@ public class Line {
       return end;
   }
 
+  public Point getTopPoint() {
+    if(start.isUpper(end))
+      return start;
+    else
+      return end;
+  }
+
+  public Point getBottomPoint() {
+    if(start.isBelow(end))
+      return start;
+    else
+      return end;
+  }
+
   public boolean cross(Line otherLine) {
-    LineEquation otherLineEquation = otherLine.equation;
+    boolean isCrossing;
 
-    RealMatrix coefficients = new Array2DRowRealMatrix(new double[][] { { equation.getK(), -1 }, { otherLineEquation.getK(), -1 } });
+    GeneralLineEquation otherLineEquation = otherLine.equation;
 
+    RealMatrix coefficients = new Array2DRowRealMatrix(new double[][] { { equation.getA(), equation.getB() }, { otherLineEquation.getA(), otherLineEquation.getB() } });
     DecompositionSolver solver = new LUDecomposition(coefficients).getSolver();
+    RealVector constants = new ArrayRealVector(new double[] { -equation.getC(), -otherLineEquation.getC() });
 
-    RealVector constants = new ArrayRealVector(new double[] { -equation.getB(), -otherLineEquation.getB() });
-    RealVector solution = solver.solve(constants);
+    try {
+      RealVector solution = solver.solve(constants);
 
-    double crossingPointX = solution.getEntry(0);
+      double crossingPointX = Precision.round(solution.getEntry(0), 6);
+      double crossingPointY = Precision.round(solution.getEntry(1), 6);
 
-    double lineLeftPointX, lineRightPointX, otherLineLeftPointX, otherLineRightPointX;
-    lineLeftPointX = this.getLeftPoint().getX();
-    lineRightPointX = this.getRightPoint().getX();
-    otherLineLeftPointX = otherLine.getLeftPoint().getX();
-    otherLineRightPointX = otherLine.getRightPoint().getX();
+      Point crossingPoint = new Point(crossingPointX, crossingPointY);
 
-    boolean isCrossing =
-            (crossingPointX >= lineLeftPointX && crossingPointX <= lineRightPointX) &&
-            (crossingPointX >= otherLineLeftPointX && crossingPointX <= otherLineRightPointX);
+      double lineLeftPointX, lineRightPointX, otherLineLeftPointX, otherLineRightPointX;
+      lineLeftPointX = this.getLeftPoint().getX();
+      lineRightPointX = this.getRightPoint().getX();
+      otherLineLeftPointX = otherLine.getLeftPoint().getX();
+      otherLineRightPointX = otherLine.getRightPoint().getX();
+
+      double lineTopPointY, lineBottomPointY, otherLineTopPointY, otherLineBottomPointY;
+      lineTopPointY = this.getTopPoint().getY();
+      lineBottomPointY = this.getBottomPoint().getY();
+      otherLineTopPointY = otherLine.getTopPoint().getY();
+      otherLineBottomPointY = otherLine.getBottomPoint().getY();
+
+      isCrossing =
+              (crossingPointX >= lineLeftPointX && crossingPointX <= lineRightPointX) &&
+              (crossingPointX >= otherLineLeftPointX && crossingPointX <= otherLineRightPointX) &&
+              (crossingPointY >= lineBottomPointY && crossingPointY <= lineTopPointY) &&
+              (crossingPointY >= otherLineBottomPointY && crossingPointY <= otherLineTopPointY) &&
+              (!crossingPoint.equals(getStartPoint()) && !crossingPoint.equals(getEndPoint())) &&
+              (!crossingPoint.equals(otherLine.getStartPoint()) && !crossingPoint.equals(otherLine.getEndPoint()));
+
+    } catch(SingularMatrixException exception) { // Решения системы уравнений прямых, на которых лежат отрезки, нет
+      isCrossing = false;
+    }
+
+    StringBuilder crossingInfoBuilder = new StringBuilder();
+    crossingInfoBuilder.append(this.toString());
+    crossingInfoBuilder.append("\n");
+    crossingInfoBuilder.append(otherLine.toString());
+    crossingInfoBuilder.append("\n");
+    crossingInfoBuilder.append("Crossing: ");
+    crossingInfoBuilder.append(isCrossing);
+    crossingInfoBuilder.append("\n");
+
+    System.out.println(crossingInfoBuilder.toString());
 
     return isCrossing;
   }
@@ -92,5 +135,17 @@ public class Line {
   @Override
   public int hashCode() {
     return Objects.hash(start, end);
+  }
+
+  @Override
+  public String toString() {
+    StringBuilder edgeDescriptionBuilder = new StringBuilder();
+
+    edgeDescriptionBuilder.append("Start: ");
+    edgeDescriptionBuilder.append(this.start.toString());
+    edgeDescriptionBuilder.append(", end: ");
+    edgeDescriptionBuilder.append(this.end.toString());
+
+    return edgeDescriptionBuilder.toString();
   }
 }
