@@ -75,4 +75,9 @@ public class Point {
     else
       return false;
   }
+
+  @Override
+  public int hashCode() {
+    return 397 * Double.hashCode(x) + Double.hashCode(y);
+  }
 }

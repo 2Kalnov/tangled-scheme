@@ -1,6 +1,6 @@
 package core;
 
-import core.entity.Node;
+import core.entity.node.Node;
 import core.entity.Tangle;
 import core.geometry.Point;
 
@@ -21,6 +21,11 @@ public class Field {
   }
 
   public boolean moveNode(Point supposedNodePosition, Point targetPosition) {
+    // Поиск узла среди всех узлов в клубке
+
+    // Проверяем, что узел хотят переместить в пределах поля
+    if(supposedNodePosition.getX() <= )
+
     Set<Node> nodes = tangle.getNodes();
     boolean successfulMove = false;
 

@@ -2,6 +2,8 @@ package core.geometry;
 
 import org.apache.commons.math3.linear.*;
 
+import java.util.Objects;
+
 public class Line {
   private Point start;
   private Point end;
@@ -85,5 +87,10 @@ public class Line {
     }
 
     return areEqual;
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(start, end);
   }
 }
