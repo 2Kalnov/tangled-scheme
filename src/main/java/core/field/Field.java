@@ -31,8 +31,8 @@ public class Field {
   public void moveNode(Node tangleNode, Point targetPosition)
           throws PositionOutOfFieldException, PositionOccupiedException
   {
-    double targetPositionX = targetPosition.getX();
-    double targetPositionY = targetPosition.getY();
+    int targetPositionX = targetPosition.getX();
+    int targetPositionY = targetPosition.getY();
 
     boolean underField = targetPositionY < 0;
     boolean aboveField = targetPositionY > height;
