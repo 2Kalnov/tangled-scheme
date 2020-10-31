@@ -1,13 +1,13 @@
 package core.field.geometry;
 
 public class Point {
-  public Point(double x, double y) {
+  public Point(int x, int y) {
     this.x = x;
     this.y = y;
   }
 
-  private double x;
-  private double y;
+  private int x;
+  private int y;
 
   public double getX() {
     return this.x;
@@ -17,10 +17,8 @@ public class Point {
     return this.y;
   }
 
-  public Point move(double xOffset, double yOffset) {
-    double pointX = this.x;
-    double pointY = this.y;
-    return new Point(pointX + xOffset, pointY + yOffset);
+  public Point move(int xOffset, int yOffset) {
+    return new Point(this.x + xOffset, this.y + yOffset);
   }
 
   public boolean isToTheLeft(Point otherPoint) {
