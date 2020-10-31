@@ -36,8 +36,8 @@ public class Node {
    * @param targetY ордината точки, в которую необходимо переместить узел
    * @return узел изменил своё положение
    */
-  protected boolean moveTo(double targetX, double targetY) {
-    double xOffset, yOffset;
+  protected boolean moveTo(int targetX, int targetY) {
+    int xOffset, yOffset;
     xOffset = targetX - this.position.getX();
     yOffset = targetY - this.position.getY();
 
@@ -45,7 +45,7 @@ public class Node {
     return xOffset != 0 || yOffset != 0;
   }
 
-  public void move(double targetX, double targetY) {
+  public void move(int targetX, int targetY) {
     boolean moved = moveTo(targetX, targetY);
     if(moved)
       fireMoveEvent();
