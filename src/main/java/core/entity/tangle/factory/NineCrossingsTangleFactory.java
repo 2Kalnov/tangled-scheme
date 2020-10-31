@@ -14,16 +14,16 @@ public class NineCrossingsTangleFactory implements TangleFactory {
 
   @Override
   public Tangle getTangle() {
-    Node firstNode = new Node(3.1, 6.4);
-    Node secondNode = new Node(4.7, 1.8);
-    Node thirdNode = new Node(14.2, 2);
-    Node fourthNode = new Node(15.6,6.6);
-    Node fifthNode = new Node(8, 15.8);
-    Node sixthNode = new Node(9.5, 11);
-    Node seventhNode = new Node(8.9, 7.1);
-    Node eighthNode = new Node(5.5, 6.5);
-    Node ninthNode = new Node(6.2, 12.2);
-    Node tenthNode = new Node(4.1, 14);
+    Node firstNode = new Node(6, 13);
+    Node secondNode = new Node(9, 3);
+    Node thirdNode = new Node(28, 4);
+    Node fourthNode = new Node(31,13);
+    Node fifthNode = new Node(16, 32);
+    Node sixthNode = new Node(19, 22);
+    Node seventhNode = new Node(18, 14);
+    Node eighthNode = new Node(11, 13);
+    Node ninthNode = new Node(12, 24);
+    Node tenthNode = new Node(8, 28);
 
     Set<Node> nodes = new HashSet<>();
     nodes.addAll(Arrays.asList(
