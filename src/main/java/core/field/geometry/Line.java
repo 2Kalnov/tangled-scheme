@@ -78,15 +78,15 @@ public class Line {
       double crossingPointX = Precision.round(solution.getEntry(0), 6);
       double crossingPointY = Precision.round(solution.getEntry(1), 6);
 
-      Point crossingPoint = new Point(crossingPointX, crossingPointY);
+      //Point crossingPoint = new Point(crossingPointX, crossingPointY);
 
-      double lineLeftPointX, lineRightPointX, otherLineLeftPointX, otherLineRightPointX;
+      int lineLeftPointX, lineRightPointX, otherLineLeftPointX, otherLineRightPointX;
       lineLeftPointX = this.getLeftPoint().getX();
       lineRightPointX = this.getRightPoint().getX();
       otherLineLeftPointX = otherLine.getLeftPoint().getX();
       otherLineRightPointX = otherLine.getRightPoint().getX();
 
-      double lineTopPointY, lineBottomPointY, otherLineTopPointY, otherLineBottomPointY;
+      int lineTopPointY, lineBottomPointY, otherLineTopPointY, otherLineBottomPointY;
       lineTopPointY = this.getTopPoint().getY();
       lineBottomPointY = this.getBottomPoint().getY();
       otherLineTopPointY = otherLine.getTopPoint().getY();
@@ -97,8 +97,12 @@ public class Line {
               (crossingPointX >= otherLineLeftPointX && crossingPointX <= otherLineRightPointX) &&
               (crossingPointY >= lineBottomPointY && crossingPointY <= lineTopPointY) &&
               (crossingPointY >= otherLineBottomPointY && crossingPointY <= otherLineTopPointY) &&
-              (!crossingPoint.equals(getStartPoint()) && !crossingPoint.equals(getEndPoint())) &&
-              (!crossingPoint.equals(otherLine.getStartPoint()) && !crossingPoint.equals(otherLine.getEndPoint()));
+              //(!crossingPoint.equals(getStartPoint()) && !crossingPoint.equals(getEndPoint())) &&
+              !(crossingPointX == getStartPoint().getX() && crossingPointY == getStartPoint().getY()) &&
+              !(crossingPointX == getEndPoint().getX() && crossingPointY == getEndPoint().getY()) &&
+              //(!crossingPoint.equals(otherLine.getStartPoint()) && !crossingPoint.equals(otherLine.getEndPoint()));
+              !(crossingPointX == otherLine.getStartPoint().getX() && crossingPointX == otherLine.getStartPoint().getY()) &&
+              !(crossingPointX == otherLine.getEndPoint().getX() && crossingPointY == otherLine.getEndPoint().getY());
 
     } catch(SingularMatrixException exception) { // Решения системы уравнений прямых, на которых лежат отрезки, нет
       isCrossing = false;
