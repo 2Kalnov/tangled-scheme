@@ -25,7 +25,7 @@ public class Node {
     this.position = new Point(nodePosition.getX(), nodePosition.getY());
   }
 
-  public Node(double x, double y) {
+  public Node(int x, int y) {
     this();
 
     this.position = new Point(x, y);
