@@ -31,18 +31,24 @@ public class Model implements TangleStateListener {
     this.isTangled = tangle.getEdgesCrossingCount() > 0;
   }
 
-  private boolean isTangled;
+  @Getter
+  private boolean isTangled = true;
   private Field gameField;
-  private String startTangleFilePath;
 
   public void start() {
-    // Загрузка клубка из файла
+    Tangle tangle = this.tangleFactory.getTangle();
+    this.gameField = new Field(tangleFactory.getWidth(), tangleFactory.getHeight());
+    this.gameField.setTangle(tangle);
 
-    File 
+    tangle.addListener(this);
   }
 
-  public void setStartTangleFilePath(String filePath) {
-    this.startTangleFilePath = filePath;
+  public int getFieldWidth() {
+    return gameField.getWidth();
+  }
+
+  public int getFieldHeight() {
+    return gameField.getHeight();
   }
 
   protected boolean checkTangleValidity() {
