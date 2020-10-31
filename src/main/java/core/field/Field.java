@@ -1,4 +1,4 @@
-package core;
+package core.field;
 
 import core.entity.node.Node;
 import core.entity.tangle.Tangle;
@@ -20,11 +20,22 @@ public class Field {
     return tangle;
   }
 
-  public boolean moveNode(Point supposedNodePosition, Point targetPosition) {
-    // Поиск узла среди всех узлов в клубке
+  public void moveNode(Node tangleNode, Point targetPosition)
+          throws PositionOutOfFieldException, PositionOccupiedException
+  {
+    double targetPositionX = targetPosition.getX();
+    double targetPositionY = targetPosition.getY();
 
+    boolean underField = targetPositionY < 0;
+    boolean aboveField = targetPositionY > height;
+    boolean onSideOfField = targetPositionY < 0 || targetPositionY > width;
     // Проверяем, что узел хотят переместить в пределах поля
-    if(supposedNodePosition.getX() <= )
+    if(underField || aboveField || onSideOfField)
+      throw new PositionOutOfFieldException("Невозможно переместить узел за пределы игрового поля");
+
+    // Проверяем, что узел хотят переместить в точку, в которой нет другого узла
+    if(isPositionOccupied(targetPositionX, targetPositionY))
+      throw new PositionOccupiedException("Невозможно переместить узел: позиция занята другим узлом");
 
     Set<Node> nodes = tangle.getNodes();
     boolean successfulMove = false;
@@ -32,12 +43,9 @@ public class Field {
     for(Node node : nodes) {
       Point nodePosition = node.getPosition();
 
-      // TODO учитывать радиус вершины, поскольку на экране она отображается не точкой, а кругом
-      if(nodePosition.equals(supposedNodePosition))
-        node.move(
-                targetPosition.getX() - supposedNodePosition.getX(),
-                targetPosition.getY() - supposedNodePosition.getY()
-        );
+  public boolean isPositionOccupied(double x, double y) {
+    return getNode(x, y) != null;
+  }
 
       successfulMove = true;
     }
