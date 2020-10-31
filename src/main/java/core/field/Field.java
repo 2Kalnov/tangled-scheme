@@ -50,7 +50,7 @@ public class Field {
     );
   }
 
-  public Node getNode(double x, double y) {
+  public Node getNode(int x, int y) {
     Point nodePosition = new Point(x, y);
     Set<Node> nodes = tangle.getNodes();
 
@@ -62,7 +62,7 @@ public class Field {
     return null;
   }
 
-  public boolean isPositionOccupied(double x, double y) {
+  public boolean isPositionOccupied(int x, int y) {
     return getNode(x, y) != null;
   }
 
