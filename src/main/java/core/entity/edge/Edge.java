@@ -37,5 +37,18 @@ public class Edge implements NodeListener {
     return this.line.hashCode();
   }
 
+  @Override
+  public boolean equals(Object otherObject) {
+    if(otherObject != null && otherObject instanceof Edge) {
+      Edge otherEdge = (Edge)otherObject;
+
+      return this.line.equals(otherEdge.line);
+    }
+    else return false;
+  }
+
+  @Override
+  public String toString() {
+    return this.line.toString();
   }
 }
