@@ -37,11 +37,22 @@ public class Field {
     if(isPositionOccupied(targetPositionX, targetPositionY))
       throw new PositionOccupiedException("Невозможно переместить узел: позиция занята другим узлом");
 
+    tangleNode.move(
+            targetPosition.getX(), targetPosition.getY()
+    );
+  }
+
+  public Node getNode(double x, double y) {
+    Point nodePosition = new Point(x, y);
     Set<Node> nodes = tangle.getNodes();
-    boolean successfulMove = false;
 
     for(Node node : nodes) {
-      Point nodePosition = node.getPosition();
+      if(node.getPosition().equals(nodePosition))
+        return node;
+    }
+
+    return null;
+  }
 
   public boolean isPositionOccupied(double x, double y) {
     return getNode(x, y) != null;
