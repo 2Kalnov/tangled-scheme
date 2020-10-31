@@ -1,6 +1,6 @@
-package core.entity;
+package core.entity.node;
 
-import core.geometry.Point;
+import core.field.geometry.Point;
 import core.event.NodeListener;
 
 import java.util.ArrayList;
@@ -12,20 +12,41 @@ public class Node {
   protected int id;
   protected List<NodeListener> listeners;
 
-  public Node() {
+  private Node() {
     lastNodeId += 1;
     this.id = lastNodeId;
 
     this.listeners = new ArrayList<>();
   }
 
-  public void move(double xOffset, double yOffset) {
+  public Node(Point nodePosition) {
+    this();
+
+    this.position = new Point(nodePosition.getX(), nodePosition.getY());
+  }
+
+  public Node(double x, double y) {
+    this();
+
+    this.position = new Point(x, y);
+  }
+
+  /**
+   * @param targetX абсцисса точки, в которую необходимо переместить узел
+   * @param targetY ордината точки, в которую необходимо переместить узел
+   * @return узел изменил своё положение
+   */
+  protected boolean moveTo(double targetX, double targetY) {
+    double xOffset, yOffset;
+    xOffset = targetX - this.position.getX();
+    yOffset = targetY - this.position.getY();
+
     this.position = this.position.move(xOffset, yOffset);
   }
 
-  protected void updateListeners() {
+  protected void fireMoveEvent() {
     for(NodeListener listener : listeners) {
-      listener.update(this.id);
+      listener.nodeChanged();
     }
   }
 
