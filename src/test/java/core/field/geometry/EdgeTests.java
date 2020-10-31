@@ -28,7 +28,7 @@ public class EdgeTests {
     Node otherEnd = new Node(5, 4);
     Edge otherEdge = new Edge(otherStart, otherEnd);
 
-    otherEnd.move(2, 2.5);
+    otherEnd.move(2, 3);
 
     Assertions.assertTrue(edge.cross(otherEdge));
   }
