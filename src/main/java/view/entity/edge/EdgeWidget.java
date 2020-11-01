@@ -27,8 +27,13 @@ public class EdgeWidget {
     core.field.geometry.Point start = this.edge.getLine().getStartPoint();
     core.field.geometry.Point end = this.edge.getLine().getEndPoint();
 
-    Shape line = new Line2D.Double(start.getX(), start.getY(), end.getX(), end.getY());
-    g.fill(line);
+    // Shape line = new Line2D.Double(start.getX(), start.getY(), end.getX(), end.getY());
+    // g.fill(line);
+    g.setColor(Color.GRAY);
+    g.setStroke(new BasicStroke(2));
+    g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+    g.drawLine(start.getX(), start.getY(), end.getX(), end.getY());
+
   }
 
   @Override
