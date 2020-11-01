@@ -9,19 +9,19 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class FourCrossingsTangleFactory implements TangleFactory {
-  private final static int TANGLE_WIDTH = 350;
+  private final static int TANGLE_WIDTH = 450;
   private final static int TANGLE_HEIGHT = 450;
 
   @Override
   public Tangle getTangle() {
     // Создание узлов
     Set<Node> startingTangleNodes = new HashSet<>();
-    Node left = new Node(20, 60);
-    Node topLeft = new Node(40, 100);
-    Node topRight = new Node(70, 100);
-    Node right = new Node(90, 60);
-    Node bottomRight = new Node(70, 20);
-    Node bottomLeft = new Node(40, 20);
+    Node left = new Node(80, 240);
+    Node topLeft = new Node(160, 400);
+    Node topRight = new Node(280, 400);
+    Node right = new Node(360, 240);
+    Node bottomRight = new Node(280, 80);
+    Node bottomLeft = new Node(160, 80);
 
     startingTangleNodes.addAll(Arrays.asList(left, topLeft, topRight, right, bottomRight, bottomLeft));
 
