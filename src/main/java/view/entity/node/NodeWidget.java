@@ -8,7 +8,7 @@ import java.awt.geom.Ellipse2D;
 
 public class NodeWidget extends JPanel {
   protected static int NODE_DIAMETER = 30;
-  protected static int BORDER_SIZE = 8;
+  protected static int BORDER_SIZE = 6;
 
   protected final Node node;
   protected Color color;
