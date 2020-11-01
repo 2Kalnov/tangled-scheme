@@ -5,8 +5,8 @@ import core.entity.edge.Edge;
 import java.awt.*;
 
 public class EdgeWidgetFactory {
-  private static Color CROSSED_EDGE_COLOR = Color.ORANGE;
-  private static Color UNTANGLED_EDGE_COLOR = Color.getHSBColor(217, 73, 96);
+  private static Color CROSSED_EDGE_COLOR = new Color(191, 43, 10);
+  private static Color UNTANGLED_EDGE_COLOR = new Color(11, 87, 40);
 
   public static EdgeWidget getEdge(Edge edge, boolean isCrossed) {
     Color edgeColor;
