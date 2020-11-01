@@ -11,9 +11,9 @@ public class EdgeWidgetFactory {
   public static EdgeWidget getEdge(Edge edge, boolean isCrossed) {
     Color edgeColor;
     if(isCrossed)
-      edgeColor = UNTANGLED_EDGE_COLOR;
-    else
       edgeColor = CROSSED_EDGE_COLOR;
+    else
+      edgeColor = UNTANGLED_EDGE_COLOR;
 
     return new EdgeWidget(edge, edgeColor);
   }
