@@ -5,10 +5,10 @@ import core.entity.node.Node;
 import java.awt.*;
 
 public class NodeWidgetFactory {
-  private static Color SIMPLE_NODE_COLOR = Color.getHSBColor(217, 24, 61);
-  private static Color STATIC_NODE_COLOR = Color.getHSBColor(13, 83, 75);
-  private static Color VERTICAL_NODE_COLOR = Color.getHSBColor(68, 83, 75);
-  private static Color HORIZONTAL_NODE_COLOR = Color.getHSBColor(287, 43, 87);
+  private static Color SIMPLE_NODE_COLOR = new Color(66, 86, 184);
+  private static Color STATIC_NODE_COLOR = new Color(153, 65, 49);
+  private static Color VERTICAL_NODE_COLOR = new Color(219, 219, 158);
+  private static Color HORIZONTAL_NODE_COLOR = new Color(165, 217, 200);
 
   public static NodeWidget getSimpleNodeWidget(Node node) {
     return new NodeWidget(node, SIMPLE_NODE_COLOR);
