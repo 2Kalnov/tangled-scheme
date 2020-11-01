@@ -20,15 +20,15 @@ public class FieldWidget extends JPanel {
     // null в качестве layout-manager позволяет задавать абсолютные координаты для вложенных виджетов
     this.setPreferredSize(new Dimension(width, height));
     this.setLayout(null);
-
-    // Добавляем узлы на поле
-    for(NodeWidget node : tangle.getNodes()) {
-      this.add(node);
-    }
   }
 
   public void setTangle(TangleWidget tangleWidget) {
     this.tangle = tangleWidget;
+
+    // Добавляем узлы на поле
+    for(NodeWidget node : tangleWidget.getNodes()) {
+      this.add(node);
+    }
   }
 
   @Override
