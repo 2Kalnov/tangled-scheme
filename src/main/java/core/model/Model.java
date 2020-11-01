@@ -51,6 +51,10 @@ public class Model implements TangleStateListener {
     return gameField.getHeight();
   }
 
+  public Tangle getTangle() {
+    return gameField.getTangle();
+  }
+
   public void moveNode(Node nodeToMove, Point targetPosition) throws PositionOutOfFieldException, PositionOccupiedException {
     gameField.moveNode(nodeToMove, targetPosition);
   }
