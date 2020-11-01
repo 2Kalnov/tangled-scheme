@@ -16,12 +16,12 @@ public class FourCrossingsTangleFactory implements TangleFactory {
   public Tangle getTangle() {
     // Создание узлов
     Set<Node> startingTangleNodes = new HashSet<>();
-    Node left = new Node(2, 6);
-    Node topLeft = new Node(4, 10);
-    Node topRight = new Node(7, 10);
-    Node right = new Node(9, 6);
-    Node bottomRight = new Node(7, 2);
-    Node bottomLeft = new Node(4, 2);
+    Node left = new Node(20, 60);
+    Node topLeft = new Node(40, 100);
+    Node topRight = new Node(70, 100);
+    Node right = new Node(90, 60);
+    Node bottomRight = new Node(70, 20);
+    Node bottomLeft = new Node(40, 20);
 
     startingTangleNodes.addAll(Arrays.asList(left, topLeft, topRight, right, bottomRight, bottomLeft));
 
