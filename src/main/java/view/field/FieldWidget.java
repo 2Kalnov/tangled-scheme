@@ -18,8 +18,8 @@ public class FieldWidget extends JPanel {
     this.height = height;
 
     // null в качестве layout-manager позволяет задавать абсолютные координаты для вложенных виджетов
-    this.setPreferredSize(new Dimension(width, height));
-    this.setLayout(null);
+    setPreferredSize(new Dimension(width, height));
+    setLayout(null);
   }
 
   public void setTangle(TangleWidget tangleWidget) {
@@ -28,6 +28,13 @@ public class FieldWidget extends JPanel {
     // Добавляем узлы на поле
     for(NodeWidget node : tangleWidget.getNodes()) {
       this.add(node);
+      Dimension nodeSize = node.getSize();
+
+      core.field.geometry.Point nodePosition = node.getPosition();
+      int x = nodePosition.getX();
+      int y = nodePosition.getY();
+      node.setBounds(x, y, nodeSize.width + 5, nodeSize.height + 5);
+      // node.repaint();
     }
   }
 
@@ -41,14 +48,6 @@ public class FieldWidget extends JPanel {
     for(EdgeWidget edge : tangle.getEdges()) {
       // Рёбра отрисовываются на том же холсте; рёбра не являются виджетами!
       edge.paint(g2d);
-    }
-
-    for(NodeWidget node : tangle.getNodes()) {
-      core.field.geometry.Point nodePosition = node.getPosition();
-      int x = new Double(nodePosition.getX()).intValue();
-      int y = new Double(nodePosition.getY()).intValue();
-      node.setBounds(x, y, node.getDiameter(), node.getDiameter());
-      node.repaint();
     }
   }
 }
