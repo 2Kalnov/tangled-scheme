@@ -6,6 +6,7 @@ import core.entity.tangle.factory.FourCrossingsTangleFactory;
 import core.entity.tangle.factory.NineCrossingsTangleFactory;
 import core.entity.tangle.factory.TangleFactory;
 import core.field.Field;
+import core.field.NodeNotFoundException;
 import core.field.PositionOccupiedException;
 import core.field.PositionOutOfFieldException;
 import core.field.geometry.Point;
@@ -32,16 +33,18 @@ public class TangleTests {
   }
 
   @Test
-  void moveNodeToRemoveOneCrossing() throws PositionOccupiedException, PositionOutOfFieldException {
+  void moveNodeToRemoveOneCrossing() throws PositionOccupiedException, PositionOutOfFieldException, NodeNotFoundException {
     Field field = new Field(DEFAULT_FIELD_WIDTH, DEFAULT_FIELD_HEIGHT);
 
     TangleFactory tangleFactory = new FourCrossingsTangleFactory();
     Tangle tangle = tangleFactory.getTangle();
     field.setTangle(tangle);
 
-    Node bottomRight = field.getNode(7, 2);
+    Node bottomRight = field.getNode(70, 20);
+    if(bottomRight == null)
+      throw new NodeNotFoundException();
 
-    field.moveNode(bottomRight, new Point(6, 4));
+    field.moveNode(bottomRight, new Point(60, 40));
 
     Assertions.assertEquals(3, tangle.getEdgesCrossingCount());
   }
