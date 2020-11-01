@@ -40,11 +40,11 @@ public class TangleTests {
     Tangle tangle = tangleFactory.getTangle();
     field.setTangle(tangle);
 
-    Node bottomRight = field.getNode(70, 20);
+    Node bottomRight = field.getNode(280, 80);
     if(bottomRight == null)
       throw new NodeNotFoundException();
 
-    field.moveNode(bottomRight, new Point(60, 40));
+    field.moveNode(bottomRight, new Point(240, 160));
 
     Assertions.assertEquals(3, tangle.getEdgesCrossingCount());
   }
