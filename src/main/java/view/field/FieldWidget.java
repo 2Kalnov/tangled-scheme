@@ -26,16 +26,8 @@ public class FieldWidget extends JPanel {
     this.tangle = tangleWidget;
 
     // Добавляем узлы на поле
-    for(NodeWidget node : tangleWidget.getNodes()) {
+    for(NodeWidget node : tangleWidget.getNodes())
       this.add(node);
-      int nodeSize = node.getSize().width;
-
-      core.field.geometry.Point nodePosition = node.getPosition();
-      int x = nodePosition.getX();
-      int y = nodePosition.getY();
-      node.setBounds(x - nodeSize / 2, y - nodeSize / 2, nodeSize, nodeSize);
-      // node.repaint();
-    }
   }
 
   @Override
@@ -43,6 +35,16 @@ public class FieldWidget extends JPanel {
     super.paintComponent(g);
 
     Graphics2D g2d = (Graphics2D)g;
+
+    // Задание границ узлов
+    for(NodeWidget node : tangle.getNodes()) {
+      int nodeSize = node.getSize().width;
+
+      core.field.geometry.Point nodePosition = node.getPosition();
+      int x = nodePosition.getX();
+      int y = nodePosition.getY();
+      node.setBounds(x - nodeSize / 2, y - nodeSize / 2, nodeSize, nodeSize);
+    }
 
     // Отрисовка рёбер, которые не кликабельны и могут не добавляться в контейнер (поле) отдельно
     for(EdgeWidget edge : tangle.getEdges()) {
