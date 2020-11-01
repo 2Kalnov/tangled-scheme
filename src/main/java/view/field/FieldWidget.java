@@ -28,12 +28,12 @@ public class FieldWidget extends JPanel {
     // Добавляем узлы на поле
     for(NodeWidget node : tangleWidget.getNodes()) {
       this.add(node);
-      Dimension nodeSize = node.getSize();
+      int nodeSize = node.getSize().width;
 
       core.field.geometry.Point nodePosition = node.getPosition();
       int x = nodePosition.getX();
       int y = nodePosition.getY();
-      node.setBounds(x, y, nodeSize.width + 5, nodeSize.height + 5);
+      node.setBounds(x - nodeSize / 2, y - nodeSize / 2, nodeSize, nodeSize);
       // node.repaint();
     }
   }
