@@ -58,7 +58,15 @@ public class GamePanel extends JFrame implements GameStateListener, NodeListener
     this.isTangled = isTangled;
     fieldWidget.repaint();
   }
-}
+
+  @Override
+  public void nodeMoved(Node node, Point targetPosition) {
+    try {
+      model.moveNode(node, targetPosition);
+    } catch(PositionOccupiedException | PositionOutOfFieldException e) {
+      showPlainMessage("Невозможно поместить узел в эту точку", "Ошибка");
+    }
+  }
 
   @Override
   public void nodePlaced() {
