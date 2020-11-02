@@ -59,3 +59,17 @@ public class GamePanel extends JFrame implements GameStateListener, NodeListener
     fieldWidget.repaint();
   }
 }
+
+  @Override
+  public void nodePlaced() {
+    // Пользователь распутал клубок
+    if(!isTangled) {
+      showPlainMessage(SUCCESSFUL_END_MESSAGE, MESSAGE_TITLE);
+      dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
+    }
+  }
+
+  private void showPlainMessage(String message, String title) {
+    JOptionPane.showMessageDialog(this, message, title, JOptionPane.PLAIN_MESSAGE);
+  }
+}
