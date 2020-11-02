@@ -29,6 +29,6 @@ public class TangleWidgetFactory {
       edges.add(EdgeWidgetFactory.getEdge(edge, isCrossed));
     }
 
-    return new TangleWidget(nodes, edges);
+    return new TangleWidget(nodes, edges, tangle);
   }
 }
