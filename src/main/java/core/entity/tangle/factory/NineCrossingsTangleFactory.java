@@ -10,7 +10,7 @@ import java.util.Set;
 
 public class NineCrossingsTangleFactory implements TangleFactory {
   private final static int TANGLE_WIDTH = 700;
-  private final static int TANGLE_HEIGHT = 500;
+  private final static int TANGLE_HEIGHT = 700;
 
   @Override
   public Tangle getTangle() {
