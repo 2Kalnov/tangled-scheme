@@ -108,7 +108,7 @@ public class Line {
       isCrossing = false;
     }
 
-    StringBuilder crossingInfoBuilder = new StringBuilder();
+    /*StringBuilder crossingInfoBuilder = new StringBuilder();
     crossingInfoBuilder.append(this.toString());
     crossingInfoBuilder.append("\n");
     crossingInfoBuilder.append(otherLine.toString());
@@ -117,7 +117,7 @@ public class Line {
     crossingInfoBuilder.append(isCrossing);
     crossingInfoBuilder.append("\n");
 
-    System.out.println(crossingInfoBuilder.toString());
+    System.out.println(crossingInfoBuilder.toString());*/
 
     return isCrossing;
   }
