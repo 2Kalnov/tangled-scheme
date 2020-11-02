@@ -46,6 +46,16 @@ public class NodeWidget extends JPanel {
     return this.node.getPosition();
   }
 
+  private void notifyNodeMoved(Point targetPosition) {
+    for(NodeListener listener : listeners)
+      listener.nodeMoved(node, targetPosition);
+  }
+
+  private void notifyNodePlaced() {
+    for(NodeListener listener : listeners)
+      listener.nodePlaced();
+  }
+
   @Override
   protected void paintComponent(Graphics g) {
     super.paintComponent(g);
@@ -76,8 +86,14 @@ public class NodeWidget extends JPanel {
         );
 
         System.out.println("Target position: " + targetPosition.toString());
+        notifyNodeMoved(targetPosition);
+      }
+    });
 
-        node.move(targetPosition.getX(), targetPosition.getY());
+    this.addMouseListener(new MouseAdapter() {
+      @Override
+      public void mouseReleased(MouseEvent e) {
+        notifyNodePlaced();
       }
     });
   }
