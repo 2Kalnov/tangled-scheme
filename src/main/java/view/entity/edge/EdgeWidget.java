@@ -14,7 +14,7 @@ public class EdgeWidget {
     this.edge = edge;
   }
 
-  public EdgeWidget(final Edge edge, Color color) {
+  EdgeWidget(final Edge edge, Color color) {
     this.edge = edge;
     this.color = color;
   }

@@ -14,7 +14,7 @@ public class TangleWidget extends JPanel {
   private final Set<NodeWidget> nodes;
   private final Set<EdgeWidget> edges;
 
-  public TangleWidget(Set<NodeWidget> nodes, Set<EdgeWidget> edges) {
+  TangleWidget(Set<NodeWidget> nodes, Set<EdgeWidget> edges, Tangle tangle) {
     this.nodes = nodes;
     this.edges = edges;
   }
