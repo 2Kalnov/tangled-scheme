@@ -6,7 +6,7 @@ import java.awt.*;
 
 public class EdgeWidgetFactory {
   private static Color CROSSED_EDGE_COLOR = new Color(191, 43, 10);
-  private static Color UNTANGLED_EDGE_COLOR = new Color(11, 87, 40);
+  private static Color UNTANGLED_EDGE_COLOR = new Color(141, 245, 66);
 
   public static EdgeWidget getEdge(Edge edge, boolean isCrossed) {
     return new EdgeWidget(edge, getEdgeColor(isCrossed));
