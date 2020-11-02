@@ -10,13 +10,7 @@ import java.awt.*;
 public class FieldWidget extends JPanel {
   protected TangleWidget tangle;
 
-  private final int height;
-  private final int width;
-
   public FieldWidget(int width, int height) {
-    this.width = width;
-    this.height = height;
-
     // null в качестве layout-manager позволяет задавать абсолютные координаты для вложенных виджетов
     setPreferredSize(new Dimension(width, height));
     setLayout(null);
@@ -33,6 +27,7 @@ public class FieldWidget extends JPanel {
   @Override
   protected void paintComponent(Graphics g) {
     super.paintComponent(g);
+    System.out.println("Repainting field");
 
     Graphics2D g2d = (Graphics2D)g;
 
@@ -43,6 +38,7 @@ public class FieldWidget extends JPanel {
       core.field.geometry.Point nodePosition = node.getPosition();
       int x = nodePosition.getX();
       int y = nodePosition.getY();
+      // node.setBounds(x - nodeSize / 2, y - nodeSize / 2, nodeSize, nodeSize);
       node.setBounds(x - nodeSize / 2, y - nodeSize / 2, nodeSize, nodeSize);
     }
 
