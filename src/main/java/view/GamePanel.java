@@ -1,5 +1,6 @@
 package view;
 
+import core.event.GameStateListener;
 import core.model.Model;
 import view.entity.tangle.TangleWidget;
 import view.entity.tangle.TangleWidgetFactory;
@@ -8,7 +9,7 @@ import view.field.FieldWidget;
 import javax.swing.*;
 import java.awt.*;
 
-public class GamePanel extends JFrame {
+public class GamePanel extends JFrame implements GameStateListener {
 
   private final Model model;
   private final FieldWidget fieldWidget;
@@ -18,6 +19,7 @@ public class GamePanel extends JFrame {
     this.fieldWidget = field;
 
     fieldWidget.setTangle(TangleWidgetFactory.getTangle(model.getTangle()));
+    model.addListener(this);
 
     // Фиксированные размеры главного окна
     setResizable(false);
@@ -32,11 +34,13 @@ public class GamePanel extends JFrame {
     setTitle("Запутанная схема");
   }
 
-  private void configureWindow() {
+  @Override
+  public void tangleUpdated(boolean isTangled) {
+    fieldWidget.repaint();
+    final String MESSAGE_TITLE = "Игра окончена";
 
-  }
-
-  private void subscribeToMouseEvents() {
-
+    // Пользователь распутал клубок
+    if(!isTangled)
+      JOptionPane.showMessageDialog(this, "Поздравляем! Вы распутали этот клубок :)", MESSAGE_TITLE, JOptionPane.PLAIN_MESSAGE);
   }
 }
