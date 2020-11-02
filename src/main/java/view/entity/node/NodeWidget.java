@@ -1,28 +1,39 @@
 package view.entity.node;
 
 import core.entity.node.Node;
+import core.field.geometry.Point;
+import view.event.NodeListener;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
+import java.util.ArrayList;
+import java.util.List;
 
 public class NodeWidget extends JPanel {
   protected static int NODE_DIAMETER = 30;
   protected static int BORDER_SIZE = 6;
-
   protected final Node node;
   protected Color color;
+  private List<NodeListener> listeners;
 
   public NodeWidget(final Node node) {
     this.node = node;
     initMouseListener();
+    listeners = new ArrayList<>();
   }
 
   public NodeWidget(final Node node, Color color) {
     this(node);
     this.color = color;
     setBackground(new Color(color.getRed(), color.getGreen(), color.getBlue(), 0));
+  }
+
+  public void addListener(NodeListener listener) {
+    if(listener != null && !listeners.contains(listener))
+      listeners.add(listener);
   }
 
   @Override
@@ -43,11 +54,7 @@ public class NodeWidget extends JPanel {
 
     // Граница узла
     graphics2D.setColor(Color.BLACK);
-    graphics2D.fillOval(
-            0, 0,
-            NODE_DIAMETER,
-            NODE_DIAMETER
-    );
+    graphics2D.fillOval(0, 0, NODE_DIAMETER, NODE_DIAMETER);
 
     // Узел
     graphics2D.setColor(this.color);
@@ -79,6 +86,4 @@ public class NodeWidget extends JPanel {
   public int hashCode() {
     return this.node.hashCode();
   }
-
-
 }
