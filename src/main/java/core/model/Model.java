@@ -3,6 +3,7 @@ package core.model;
 import core.entity.node.Node;
 import core.entity.tangle.factory.FourCrossingsTangleFactory;
 import core.entity.tangle.factory.TangleFactory;
+import core.event.GameStateListener;
 import core.field.Field;
 import core.entity.tangle.Tangle;
 import core.event.TangleStateListener;
@@ -11,9 +12,13 @@ import core.field.PositionOutOfFieldException;
 import core.field.geometry.Point;
 import lombok.Getter;
 
+import java.util.List;
+
 public class Model implements TangleStateListener {
 
+  private List<GameStateListener> listeners;
   private TangleFactory tangleFactory;
+  private Field gameField;
 
   public Model() {
     this.tangleFactory = new FourCrossingsTangleFactory();
@@ -25,13 +30,11 @@ public class Model implements TangleStateListener {
 
   @Override
   public void tangleStateChanged() {
-    Tangle tangle = gameField.getTangle();
-    this.isTangled = tangle.getEdgesCrossingCount() > 0;
-  }
+    boolean isTangled = gameField.getTangle().getEdgesCrossingCount() > 0;
 
-  @Getter
-  private boolean isTangled = true;
-  private Field gameField;
+    for(GameStateListener listener : listeners)
+      listener.tangleUpdated(isTangled);
+  }
 
   public void start() {
     Tangle tangle = this.tangleFactory.getTangle();
@@ -55,5 +58,10 @@ public class Model implements TangleStateListener {
 
   public void moveNode(Node nodeToMove, Point targetPosition) throws PositionOutOfFieldException, PositionOccupiedException {
     gameField.moveNode(nodeToMove, targetPosition);
+  }
+
+  public void addListener(GameStateListener listener) {
+    if(listener != null && !listeners.contains(listener))
+      listeners.add(listener);
   }
 }
