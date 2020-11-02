@@ -23,6 +23,10 @@ public class EdgeWidget {
     this.color = color;
   }
 
+  public Edge getEdge() {
+    return this.edge;
+  }
+
   /**
    * Отрисовка ребра на заданном "холсте"
    * @param g - объект Graphics, с помощью которого будет отрисовано ребро (обязательно требуется Graphics2D!)
