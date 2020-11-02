@@ -12,6 +12,7 @@ import core.field.PositionOutOfFieldException;
 import core.field.geometry.Point;
 import lombok.Getter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Model implements TangleStateListener {
@@ -61,6 +62,8 @@ public class Model implements TangleStateListener {
   }
 
   public void addListener(GameStateListener listener) {
+    if(listeners == null)
+      listeners = new ArrayList<>();
     if(listener != null && !listeners.contains(listener))
       listeners.add(listener);
   }
