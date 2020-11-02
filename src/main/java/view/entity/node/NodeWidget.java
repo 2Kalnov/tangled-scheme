@@ -18,8 +18,9 @@ public class NodeWidget extends JPanel {
   }
 
   public NodeWidget(final Node node, Color color) {
-    this.node = node;
+    this(node);
     this.color = color;
+    setBackground(new Color(color.getRed(), color.getGreen(), color.getBlue(), 0));
   }
 
   @Override
