@@ -9,12 +9,17 @@ public class EdgeWidgetFactory {
   private static Color UNTANGLED_EDGE_COLOR = new Color(11, 87, 40);
 
   public static EdgeWidget getEdge(Edge edge, boolean isCrossed) {
-    Color edgeColor;
-    if(isCrossed)
-      edgeColor = CROSSED_EDGE_COLOR;
-    else
-      edgeColor = UNTANGLED_EDGE_COLOR;
+    return new EdgeWidget(edge, getEdgeColor(isCrossed));
+  }
 
-    return new EdgeWidget(edge, edgeColor);
+  public static Color getEdgeColor(boolean isCrossed) {
+    Color color;
+
+    if(isCrossed)
+      color = CROSSED_EDGE_COLOR;
+    else
+      color = UNTANGLED_EDGE_COLOR;
+
+    return color;
   }
 }
