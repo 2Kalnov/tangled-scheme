@@ -15,16 +15,16 @@ public class FieldTests {
 
   @Test
   void moveNodeToOccupiedPosition() {
-    Field field = new Field(DEFAULT_FIELD_WIDTH, DEFAULT_FIELD_HEIGHT);
-
     TangleFactory tangleFactory = new FourCrossingsTangleFactory();
     Tangle tangle = tangleFactory.getTangle();
+
+    Field field = new Field(tangleFactory.getWidth(), tangleFactory.getHeight());
     field.setTangle(tangle);
 
-    Node right = field.getNode(9, 6);
+    Node right = field.getNode(360, 240);
 
     Assertions.assertThrows(PositionOccupiedException.class, () -> {
-      field.moveNode(right, new Point(2, 6));
+      field.moveNode(right, new Point(80, 240));
     });
   }
 
