@@ -12,7 +12,7 @@ public class EdgeWidgetFactory {
     return new EdgeWidget(edge, getEdgeColor(isCrossed));
   }
 
-  public static Color getEdgeColor(boolean isCrossed) {
+  private static Color getEdgeColor(boolean isCrossed) {
     Color color;
 
     if(isCrossed)
@@ -21,5 +21,9 @@ public class EdgeWidgetFactory {
       color = UNTANGLED_EDGE_COLOR;
 
     return color;
+  }
+
+  public static void colorize(EdgeWidget edge, boolean isCrossed) {
+    edge.setColor(getEdgeColor(isCrossed));
   }
 }
