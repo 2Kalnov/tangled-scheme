@@ -69,6 +69,8 @@ public class NodeWidget extends JPanel {
         );
 
         System.out.println("Target position: " + targetPosition.toString());
+
+        node.move(targetPosition.getX(), targetPosition.getY());
       }
     });
   }
