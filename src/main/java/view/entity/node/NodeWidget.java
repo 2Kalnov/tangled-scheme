@@ -4,7 +4,8 @@ import core.entity.node.Node;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.geom.Ellipse2D;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseMotionAdapter;
 
 public class NodeWidget extends JPanel {
   protected static int NODE_DIAMETER = 30;
@@ -15,6 +16,7 @@ public class NodeWidget extends JPanel {
 
   public NodeWidget(final Node node) {
     this.node = node;
+    initMouseListener();
   }
 
   public NodeWidget(final Node node, Color color) {
@@ -55,6 +57,20 @@ public class NodeWidget extends JPanel {
             NODE_DIAMETER - BORDER_SIZE,
             NODE_DIAMETER - BORDER_SIZE
     );
+  }
+
+  protected void initMouseListener() {
+    this.addMouseMotionListener(new MouseMotionAdapter() {
+      @Override
+      public void mouseDragged(MouseEvent e) {
+        core.field.geometry.Point targetPosition = new core.field.geometry.Point(
+                node.getPosition().getX() + e.getX() - NODE_DIAMETER / 2,
+                node.getPosition().getY() + e.getY() - NODE_DIAMETER / 2
+        );
+
+        System.out.println("Target position: " + targetPosition.toString());
+      }
+    });
   }
 
   @Override
