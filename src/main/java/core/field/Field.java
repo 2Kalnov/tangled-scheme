@@ -36,7 +36,7 @@ public class Field {
 
     boolean underField = targetPositionY < 0;
     boolean aboveField = targetPositionY > height;
-    boolean onSideOfField = targetPositionY < 0 || targetPositionY > width;
+    boolean onSideOfField = targetPositionX < 0 || targetPositionX > width;
     // Проверяем, что узел хотят переместить в пределах поля
     if(underField || aboveField || onSideOfField)
       throw new PositionOutOfFieldException("Невозможно переместить узел за пределы игрового поля");
