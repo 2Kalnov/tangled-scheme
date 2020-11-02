@@ -39,9 +39,6 @@ public class NodeWidget extends JPanel {
     Graphics2D graphics2D = (Graphics2D)g;
     graphics2D.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
-    int x = this.node.getPosition().getX();
-    int y = this.node.getPosition().getY();
-
     // Граница узла
     graphics2D.setColor(Color.BLACK);
     graphics2D.fillOval(
