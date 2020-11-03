@@ -10,6 +10,17 @@ public class NodeWidgetFactory {
   private static Color VERTICAL_NODE_COLOR = new Color(219, 219, 158);
   private static Color HORIZONTAL_NODE_COLOR = new Color(165, 217, 200);
 
+  // TODO сделать один публичный метод; в нём определять фактический тип узла и возвращать узел нужного цвета
+
+  /**
+   * Получение соответствующего виджета узла в зависимости от типа узла
+   * @param node узел
+   * @return виджет узла определённого цвета
+   */
+  public NodeWidget getNode(Node node) {
+    return new NodeWidget(node, SIMPLE_NODE_COLOR);
+  }
+
   public static NodeWidget getSimpleNodeWidget(Node node) {
     return new NodeWidget(node, SIMPLE_NODE_COLOR);
   }
