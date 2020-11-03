@@ -64,7 +64,7 @@ public class GamePanel extends JFrame implements GameStateListener, NodeListener
     try {
       model.moveNode(node, targetPosition);
     } catch(PositionOccupiedException | PositionOutOfFieldException e) {
-      showPlainMessage("Невозможно поместить узел в эту точку", "Ошибка");
+      showPlainMessage(e.getMessage(), "Ошибка");
     }
   }
 
