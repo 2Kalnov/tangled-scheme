@@ -6,28 +6,11 @@ import core.event.NodeListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Node {
+public abstract class Node {
   protected Point position;
-  protected static int lastNodeId = 0;
-  protected int id;
-  protected List<NodeListener> listeners;
-
-  private Node() {
-    lastNodeId += 1;
-    this.id = lastNodeId;
-
-    this.listeners = new ArrayList<>();
-  }
-
-  public Node(Point nodePosition) {
-    this();
-
-    this.position = new Point(nodePosition.getX(), nodePosition.getY());
-  }
+  protected List<NodeListener> listeners = new ArrayList<>();
 
   public Node(int x, int y) {
-    this();
-
     this.position = new Point(x, y);
   }
 
@@ -36,14 +19,7 @@ public class Node {
    * @param targetY ордината точки, в которую необходимо переместить узел
    * @return узел изменил своё положение
    */
-  protected boolean moveTo(int targetX, int targetY) {
-    int xOffset, yOffset;
-    xOffset = targetX - this.position.getX();
-    yOffset = targetY - this.position.getY();
-
-    this.position = this.position.move(xOffset, yOffset);
-    return xOffset != 0 || yOffset != 0;
-  }
+  protected abstract boolean moveTo(int targetX, int targetY);
 
   public void move(int targetX, int targetY) {
     boolean moved = moveTo(targetX, targetY);
@@ -51,11 +27,7 @@ public class Node {
       fireMoveEvent();
   }
 
-  protected void fireMoveEvent() {
-    for(NodeListener listener : listeners) {
-      listener.nodeChanged();
-    }
-  }
+  protected abstract void fireMoveEvent();
 
   public void addListener(NodeListener listener) {
     if(listener != null && !listeners.contains(listener))
@@ -64,10 +36,6 @@ public class Node {
 
   public Point getPosition() {
     return position;
-  }
-
-  public int getId() {
-    return this.id;
   }
 
   @Override
@@ -80,13 +48,8 @@ public class Node {
     if(otherObject != null && otherObject instanceof Node) {
       Node otherNode = (Node)otherObject;
 
-      return otherNode.position.equals(this.position) && otherNode.id == this.id;
+      return otherNode.position.equals(this.position);
     }
     else return false;
-  }
-
-  @Override
-  public String toString() {
-    return "Узел " + position.toString();
   }
 }
