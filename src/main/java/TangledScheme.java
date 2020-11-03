@@ -1,4 +1,5 @@
 import core.entity.tangle.factory.FourCrossingsTangleFactory;
+import core.entity.tangle.factory.NineCrossingsTangleFactory;
 import core.entity.tangle.factory.TangleFactory;
 import core.model.Model;
 import view.GamePanel;
@@ -8,7 +9,7 @@ import javax.swing.*;
 
 public class TangledScheme {
   public static void main(String[] args) {
-    TangleFactory factory = new FourCrossingsTangleFactory();
+    TangleFactory factory = new NineCrossingsTangleFactory();
     Model model = new Model(factory);
     model.start();
     
