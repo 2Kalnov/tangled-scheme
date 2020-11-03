@@ -42,7 +42,8 @@ public class Field {
       throw new PositionOutOfFieldException("Невозможно переместить узел за пределы игрового поля");
 
     // Проверяем, что узел хотят переместить в точку, в которой нет другого узла
-    if(isPositionOccupied(targetPositionX, targetPositionY))
+    Node nodeAtTargetPosition = getNode(targetPositionX, targetPositionY);
+    if(nodeAtTargetPosition != null && nodeAtTargetPosition != tangleNode)
       throw new PositionOccupiedException("Невозможно переместить узел: позиция занята другим узлом");
 
     tangleNode.move(
