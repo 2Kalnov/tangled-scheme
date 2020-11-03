@@ -2,6 +2,7 @@ package core.entity.tangle.factory;
 
 import core.entity.edge.Edge;
 import core.entity.node.Node;
+import core.entity.node.SimpleNode;
 import core.entity.tangle.Tangle;
 
 import java.util.Arrays;
@@ -14,16 +15,16 @@ public class NineCrossingsTangleFactory implements TangleFactory {
 
   @Override
   public Tangle getTangle() {
-    Node firstNode = new Node(120, 260);
-    Node secondNode = new Node(180, 60);
-    Node thirdNode = new Node(560, 80);
-    Node fourthNode = new Node(620,260);
-    Node fifthNode = new Node(320, 640);
-    Node sixthNode = new Node(380, 440);
-    Node seventhNode = new Node(360, 280);
-    Node eighthNode = new Node(220, 260);
-    Node ninthNode = new Node(240, 480);
-    Node tenthNode = new Node(160, 560);
+    Node firstNode = new SimpleNode(120, 260);
+    Node secondNode = new SimpleNode(180, 60);
+    Node thirdNode = new SimpleNode(560, 80);
+    Node fourthNode = new SimpleNode(620,260);
+    Node fifthNode = new SimpleNode(320, 640);
+    Node sixthNode = new SimpleNode(380, 440);
+    Node seventhNode = new SimpleNode(360, 280);
+    Node eighthNode = new SimpleNode(220, 260);
+    Node ninthNode = new SimpleNode(240, 480);
+    Node tenthNode = new SimpleNode(160, 560);
 
     Set<Node> nodes = new HashSet<>();
     nodes.addAll(Arrays.asList(

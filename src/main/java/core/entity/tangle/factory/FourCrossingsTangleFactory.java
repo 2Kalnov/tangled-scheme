@@ -2,6 +2,7 @@ package core.entity.tangle.factory;
 
 import core.entity.edge.Edge;
 import core.entity.node.Node;
+import core.entity.node.SimpleNode;
 import core.entity.tangle.Tangle;
 
 import java.util.Arrays;
@@ -16,12 +17,12 @@ public class FourCrossingsTangleFactory implements TangleFactory {
   public Tangle getTangle() {
     // Создание узлов
     Set<Node> startingTangleNodes = new HashSet<>();
-    Node left = new Node(80, 240);
-    Node topLeft = new Node(160, 400);
-    Node topRight = new Node(280, 400);
-    Node right = new Node(360, 240);
-    Node bottomRight = new Node(280, 80);
-    Node bottomLeft = new Node(160, 80);
+    Node left = new SimpleNode(80, 240);
+    Node topLeft = new SimpleNode(160, 400);
+    Node topRight = new SimpleNode(280, 400);
+    Node right = new SimpleNode(360, 240);
+    Node bottomRight = new SimpleNode(280, 80);
+    Node bottomLeft = new SimpleNode(160, 80);
 
     startingTangleNodes.addAll(Arrays.asList(left, topLeft, topRight, right, bottomRight, bottomLeft));
 
