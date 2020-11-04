@@ -31,6 +31,7 @@ public class GamePanel extends JFrame implements GameStateListener, NodeListener
 
     TangleWidget tangleWidget = TangleWidgetFactory.getTangle(model.getTangle());
     fieldWidget.setTangle(tangleWidget);
+    this.isTangled = model.isTangled();
 
     model.addListener(this);
     subscribeOnNodes(tangleWidget);
