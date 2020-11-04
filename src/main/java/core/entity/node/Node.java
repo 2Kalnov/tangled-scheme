@@ -27,7 +27,11 @@ public abstract class Node {
       fireMoveEvent();
   }
 
-  protected abstract void fireMoveEvent();
+  protected void fireMoveEvent() {
+    for(NodeListener listener : listeners) {
+      listener.nodeChanged();
+    }
+  }
 
   public void addListener(NodeListener listener) {
     if(listener != null && !listeners.contains(listener))
