@@ -17,7 +17,7 @@ public class NodeWidgetFactory {
    * @param node узел
    * @return виджет узла определённого цвета
    */
-  public NodeWidget getNode(Node node) {
+  public static NodeWidget getNode(Node node) {
     return new NodeWidget(node, SIMPLE_NODE_COLOR);
   }
 
