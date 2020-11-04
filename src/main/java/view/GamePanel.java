@@ -12,9 +12,11 @@ import view.entity.tangle.TangleWidgetFactory;
 import view.event.NodeListener;
 import view.field.FieldWidget;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.WindowEvent;
+import java.io.IOException;
 
 public class GamePanel extends JFrame implements GameStateListener, NodeListener {
 
@@ -47,11 +49,22 @@ public class GamePanel extends JFrame implements GameStateListener, NodeListener
 
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     setTitle("Запутанная схема");
+    setIcon();
   }
 
   private void subscribeOnNodes(TangleWidget tangle) {
     for(NodeWidget node : tangle.getNodes())
       node.addListener(this);
+  }
+
+  private void setIcon() {
+    final String ICON_PATH = "tangle.png";
+    try {
+      Image image = ImageIO.read(getClass().getClassLoader().getResource(ICON_PATH));
+      setIconImage(image);
+    } catch (IOException e) {
+      System.out.println("Невозможно загрузить иконку приложения!");
+    }
   }
 
   @Override
