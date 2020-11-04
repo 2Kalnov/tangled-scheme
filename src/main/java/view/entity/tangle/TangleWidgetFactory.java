@@ -19,7 +19,7 @@ public class TangleWidgetFactory {
 
     // Создаём узлы клубка
     for(Node node : tangle.getNodes())
-      nodes.add(NodeWidgetFactory.getSimpleNodeWidget(node));
+      nodes.add(NodeWidgetFactory.getNode(node));
 
     // Создаём рёбра клубка
     for(Map.Entry<Edge, Boolean> entanglement : tangle.getEdgesEntanglement().entrySet()) {
