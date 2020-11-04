@@ -58,7 +58,7 @@ public class Model implements TangleStateListener {
   }
 
   public boolean isTangled() {
-    return getTangle().getEdgesCrossingCount() == 0;
+    return getTangle().getEdgesCrossingCount() != 0;
   }
 
   public void moveNode(Node nodeToMove, Point targetPosition) throws PositionOutOfFieldException, PositionOccupiedException {
