@@ -1,6 +1,6 @@
 package view.entity.node;
 
-import core.entity.node.Node;
+import core.entity.node.*;
 
 import java.awt.*;
 
@@ -21,19 +21,16 @@ public class NodeWidgetFactory {
     return new NodeWidget(node, SIMPLE_NODE_COLOR);
   }
 
-  public static NodeWidget getSimpleNodeWidget(Node node) {
-    return new NodeWidget(node, SIMPLE_NODE_COLOR);
-  }
-
-  public static NodeWidget getStaticNodeWidget(Node node) {
-    return new NodeWidget(node, STATIC_NODE_COLOR);
-  }
-
-  public static NodeWidget getVerticalNodeWidget(Node node) {
-    return new NodeWidget(node, VERTICAL_NODE_COLOR);
-  }
-
-  public static NodeWidget getHorizontalNodeWidget(Node node) {
-    return new NodeWidget(node, HORIZONTAL_NODE_COLOR);
+  private static Color getNodeColor(Node node) {
+    if(node instanceof SimpleNode)
+      return SIMPLE_NODE_COLOR;
+    else if(node instanceof StaticNode)
+      return STATIC_NODE_COLOR;
+    else if(node instanceof VerticalNode)
+      return VERTICAL_NODE_COLOR;
+    else if(node instanceof HorizontalNode)
+      return HORIZONTAL_NODE_COLOR;
+    else
+      return SIMPLE_NODE_COLOR;
   }
 }
