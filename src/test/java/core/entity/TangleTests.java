@@ -34,10 +34,10 @@ public class TangleTests {
 
   @Test
   void moveNodeToRemoveOneCrossing() throws PositionOccupiedException, PositionOutOfFieldException, NodeNotFoundException {
-    Field field = new Field(DEFAULT_FIELD_WIDTH, DEFAULT_FIELD_HEIGHT);
-
     TangleFactory tangleFactory = new FourCrossingsTangleFactory();
     Tangle tangle = tangleFactory.getTangle();
+
+    Field field = new Field(tangleFactory.getWidth(), tangleFactory.getHeight());
     field.setTangle(tangle);
 
     Node bottomRight = field.getNode(280, 80);
