@@ -1,4 +1,4 @@
-package view;
+package view.ui;
 
 import core.entity.node.Node;
 import core.event.GameStateListener;

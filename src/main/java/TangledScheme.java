@@ -2,7 +2,7 @@ import core.entity.tangle.factory.FourCrossingsTangleFactory;
 import core.entity.tangle.factory.NineCrossingsTangleFactory;
 import core.entity.tangle.factory.TangleFactory;
 import core.model.Model;
-import view.GamePanel;
+import view.ui.GamePanel;
 import view.field.FieldWidget;
 
 import javax.swing.*;
