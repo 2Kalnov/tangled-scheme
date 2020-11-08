@@ -5,7 +5,7 @@ import core.entity.node.SimpleNode;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Assertions;
 
-public class SimpleNodeTests {
+public class NodeTests {
   @Test
   void moveNode() {
     Node node = new SimpleNode(3, 4);
