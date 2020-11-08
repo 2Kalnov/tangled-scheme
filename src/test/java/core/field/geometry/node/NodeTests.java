@@ -1,4 +1,4 @@
-package core.field.geometry;
+package core.field.geometry.node;
 
 import core.entity.node.Node;
 import core.entity.node.SimpleNode;
