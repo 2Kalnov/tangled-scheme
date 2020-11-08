@@ -7,8 +7,8 @@ public class LineTests {
   @Test
   void notCrossingLines() {
     Line line = new Line(new Point(2, 6), new Point(7, 2));
-    Line otherLine = new Line(new Point(4, 10), new Point(4, 2));
+    Line otherLine = new Line(new Point(1, 10), new Point(1, 2));
 
-    Assertions.assertTrue(line.cross(otherLine));
+    Assertions.assertTrue(!line.cross(otherLine));
   }
 }
