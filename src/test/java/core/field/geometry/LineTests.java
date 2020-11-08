@@ -11,4 +11,12 @@ public class LineTests {
 
     Assertions.assertTrue(!line.cross(otherLine));
   }
+
+  @Test
+  void crossingLines() {
+    Line line = new Line(new Point(1, 1), new Point(4, 8));
+    Line otherLine = new Line(new Point(3, 1), new Point(1, 6));
+
+    Assertions.assertTrue(line.cross(otherLine));
+  }
 }
