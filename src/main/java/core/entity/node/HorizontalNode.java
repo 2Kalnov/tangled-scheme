@@ -18,4 +18,9 @@ public class HorizontalNode extends Node {
 
     return xOffset != 0;
   }
+
+  @Override
+  public String toString() {
+    return "Узел, двигающийся горизонтально: " + position.toString();
+  }
 }

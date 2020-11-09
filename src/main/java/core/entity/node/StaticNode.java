@@ -15,4 +15,9 @@ public class StaticNode extends Node {
   protected boolean moveTo(int targetX, int targetY) {
     return false;
   }
+
+  @Override
+  public String toString() {
+    return "Статичный узел: " + position.toString();
+  }
 }

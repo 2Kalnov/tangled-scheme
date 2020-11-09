@@ -18,4 +18,9 @@ public class VerticalNode extends Node {
 
     return yOffset != 0;
   }
+
+  @Override
+  public String toString() {
+    return "Узел, двигающийся вертикально: " + position.toString();
+  }
 }
