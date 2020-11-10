@@ -1,5 +1,5 @@
 package core.event;
 
 public interface TangleStateListener {
-  void tangleStateChanged();
+  void tangleStateChanged(int crossingCount);
 }

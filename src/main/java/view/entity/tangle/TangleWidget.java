@@ -35,7 +35,7 @@ public class TangleWidget extends JPanel implements TangleStateListener {
   }
 
   @Override
-  public void tangleStateChanged() {
+  public void tangleStateChanged(int crossingCount) {
     Map<Edge, Boolean> edgesEntanglement = tangle.getEdgesEntanglement();
 
     for(EdgeWidget edge : edges) {
