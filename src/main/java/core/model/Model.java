@@ -30,8 +30,8 @@ public class Model implements TangleStateListener {
   }
 
   @Override
-  public void tangleStateChanged() {
-    boolean isTangled = gameField.getTangle().getEdgesCrossingCount() > 0;
+  public void tangleStateChanged(int crossingCount) {
+    boolean isTangled = crossingCount > 0;
 
     for(GameStateListener listener : listeners)
       listener.tangleUpdated(isTangled);
