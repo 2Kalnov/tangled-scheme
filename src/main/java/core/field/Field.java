@@ -10,8 +10,8 @@ public class Field {
   public static int DEFAULT_FIELD_HEIGHT = 200;
   public static int DEFAULT_FIELD_WIDTH = 200;
 
-  private int width;
-  private int height;
+  private final int width;
+  private final int height;
 
   public Field(int width, int height) {
     this.width = width;
