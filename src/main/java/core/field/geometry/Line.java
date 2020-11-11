@@ -10,7 +10,6 @@ public class Line {
   private Point start;
   private Point end;
 
-  @Getter
   protected GeneralLineEquation equation;
 
   public Line(Point start, Point end) {
@@ -33,6 +32,10 @@ public class Line {
 
   public double length() {
     return start.distanceTo(end);
+  }
+
+  public GeneralLineEquation getEquation() {
+    return this.equation;
   }
 
   public Point getLeftPoint() {
