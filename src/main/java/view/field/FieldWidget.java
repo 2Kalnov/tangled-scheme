@@ -9,43 +9,27 @@ import java.awt.*;
 
 public class FieldWidget extends JPanel {
   protected TangleWidget tangle;
+  private final int width;
+  private final int height;
 
   public FieldWidget(int width, int height) {
     // null в качестве layout-manager позволяет задавать абсолютные координаты для вложенных виджетов
     setPreferredSize(new Dimension(width, height));
-    setLayout(null);
+
+    this.width = width;
+    this.height = height;
   }
 
   public void setTangle(TangleWidget tangleWidget) {
     this.tangle = tangleWidget;
 
-    // Добавляем узлы на поле
-    for(NodeWidget node : tangleWidget.getNodes())
-      this.add(node);
+    add(tangleWidget);
+    tangleWidget.setPreferredSize(new Dimension(width, height));
   }
 
   @Override
   protected void paintComponent(Graphics g) {
     super.paintComponent(g);
     System.out.println("Repainting field");
-
-    Graphics2D g2d = (Graphics2D)g;
-
-    // Задание границ узлов
-    for(NodeWidget node : tangle.getNodes()) {
-      int nodeSize = node.getSize().width;
-
-      core.field.geometry.Point nodePosition = node.getPosition();
-      int x = nodePosition.getX();
-      int y = nodePosition.getY();
-      // node.setBounds(x - nodeSize / 2, y - nodeSize / 2, nodeSize, nodeSize);
-      node.setBounds(x - nodeSize / 2, y - nodeSize / 2, nodeSize, nodeSize);
-    }
-
-    // Отрисовка рёбер, которые не кликабельны и могут не добавляться в контейнер (поле) отдельно
-    for(EdgeWidget edge : tangle.getEdges()) {
-      // Рёбра отрисовываются на том же холсте; рёбра не являются виджетами!
-      edge.paint(g2d);
-    }
   }
 }

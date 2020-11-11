@@ -24,6 +24,8 @@ public class TangleWidget extends JPanel implements TangleStateListener {
     this.tangle = tangle;
 
     tangle.addListener(this);
+    setLayout(null);
+    addNodes();
   }
 
   public Set<NodeWidget> getNodes() {
@@ -32,6 +34,11 @@ public class TangleWidget extends JPanel implements TangleStateListener {
 
   public Set<EdgeWidget> getEdges() {
     return Collections.unmodifiableSet(edges);
+  }
+
+  private void addNodes() {
+    for(NodeWidget node : nodes)
+      add(node);
   }
 
   @Override
@@ -47,5 +54,24 @@ public class TangleWidget extends JPanel implements TangleStateListener {
   @Override
   protected void paintComponent(Graphics g) {
     super.paintComponent(g);
+
+    Graphics2D g2d = (Graphics2D)g;
+
+    // Задание границ узлов
+    for(NodeWidget node : nodes) {
+      int nodeSize = node.getSize().width;
+
+      core.field.geometry.Point nodePosition = node.getPosition();
+      int x = nodePosition.getX();
+      int y = nodePosition.getY();
+      // node.setBounds(x - nodeSize / 2, y - nodeSize / 2, nodeSize, nodeSize);
+      node.setBounds(x - nodeSize / 2, y - nodeSize / 2, nodeSize, nodeSize);
+    }
+
+    // Отрисовка рёбер, которые не кликабельны и могут не добавляться в контейнер (поле) отдельно
+    for(EdgeWidget edge : edges) {
+      // Рёбра отрисовываются на том же холсте; рёбра не являются виджетами!
+      edge.paint(g2d);
+    }
   }
 }
