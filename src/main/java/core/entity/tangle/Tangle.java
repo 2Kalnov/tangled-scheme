@@ -80,8 +80,7 @@ public class Tangle implements NodeListener {
 
   private void fireTangleChangedEvent() {
 
-    for (TangleStateListener listener : listeners) {
+    for (TangleStateListener listener : listeners)
       listener.tangleStateChanged(edgesCrossingCount);
-    }
   }
 }
