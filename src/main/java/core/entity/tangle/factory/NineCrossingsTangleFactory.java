@@ -17,7 +17,7 @@ public class NineCrossingsTangleFactory implements TangleFactory {
     Node firstNode = new StaticNode(120, 260);
     Node secondNode = new HorizontalNode(180, 60);
     Node thirdNode = new VerticalNode(560, 80);
-    Node fourthNode = new SimpleNode(620,260);
+    Node fourthNode = new RandomNode(620,260);
     Node fifthNode = new SimpleNode(320, 640);
     Node sixthNode = new SimpleNode(380, 440);
     Node seventhNode = new SimpleNode(360, 280);
