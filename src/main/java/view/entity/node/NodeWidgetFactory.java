@@ -9,6 +9,7 @@ public class NodeWidgetFactory {
   private static Color STATIC_NODE_COLOR = new Color(153, 65, 49);
   private static Color VERTICAL_NODE_COLOR = new Color(219, 219, 158);
   private static Color HORIZONTAL_NODE_COLOR = new Color(165, 217, 200);
+  private static Color RANDOM_NODE_COLOR = new Color(176, 77, 209);
 
   // TODO сделать один публичный метод; в нём определять фактический тип узла и возвращать узел нужного цвета
 
@@ -30,6 +31,8 @@ public class NodeWidgetFactory {
       return VERTICAL_NODE_COLOR;
     else if(node instanceof HorizontalNode)
       return HORIZONTAL_NODE_COLOR;
+    else if(node instanceof RandomNode)
+      return RANDOM_NODE_COLOR;
     else
       return SIMPLE_NODE_COLOR;
   }
